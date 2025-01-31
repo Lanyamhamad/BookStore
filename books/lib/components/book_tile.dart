@@ -18,8 +18,8 @@ class BookTile extends StatelessWidget {
             color: Colors.grey[200], borderRadius: BorderRadius.circular(12)),
         child: ListTile(
           title: Text(book.title),
-          subtitle: Text(book.author),
-          leading: Image.asset(book.imagePath),
+          subtitle: Text("\$${book.author} | \$${book.price}"),
+          leading: Image.asset(book.imagePath, width: 50, height: 50,),
           trailing: trailing,
         ),
       ),

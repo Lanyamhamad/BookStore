@@ -75,4 +75,5 @@ Screenshots
 
 Future Improvements
 
-🔹 Implement Firebase authentication for better security.🔹 Add a search bar for books and categories.🔹 Integrate an online payment system.🔹 Improve UI with animations and better design.
+🔹 Implement Firebase authentication for better security.
+🔹 Add a search bar for books and categories.🔹 Integrate an online payment system.🔹 Improve UI with animations and better design.

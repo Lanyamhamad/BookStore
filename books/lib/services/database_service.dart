@@ -1,3 +1,4 @@
+import 'package:books/models/order_model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import '../models/book.dart';
@@ -33,8 +34,19 @@ class DatabaseService {
         viewIsSelected INTEGER
       )
     ''');
+    // create order table
+    await db.execute('''     
+    CREATE TABLE orders (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      bookId INTEGER,
+      bookTitle TEXT,
+      bookPrice REAL,
+      orderDate TEXT,
+      FOREIGN KEY (bookId) REFERENCES books (id)
+    )
+  ''');
   }
-
+  // these are for books 
   Future<void> insertBook(Book book) async {
     final db = await instance.database;
     await db.insert('books', book.toMap(), conflictAlgorithm: ConflictAlgorithm.replace);
@@ -55,4 +67,15 @@ class DatabaseService {
     final db = await instance.database;
     await db.update('books', book.toMap(), where: 'id = ?', whereArgs: [book.id]);
   }
+  Future<void> insertOrder(Order order) async {
+  final db = await instance.database;
+  await db.insert('orders', order.toMap(), conflictAlgorithm: ConflictAlgorithm.replace);
+}
+
+Future<List<Order>> fetchOrders() async {
+  final db = await instance.database;
+  final orders = await db.query('orders');
+  return orders.map((json) => Order.fromMap(json)).toList();
+}
+
 }

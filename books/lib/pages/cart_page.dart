@@ -1,6 +1,8 @@
 import 'package:books/components/book_tile.dart';
 import 'package:books/models/book.dart';
 import 'package:books/models/book_shop.dart';
+import 'package:books/models/order_model.dart';
+import 'package:books/services/database_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -19,11 +21,33 @@ class _CartPageState extends State<CartPage> {
   }
 
   // pay button tapped
-  void payNow() {
-    /*
-     fill out your payment service here 
-     */
+   void payNow() async {
+    final bookShop = Provider.of<BookShop>(context, listen: false);
+    final cartItems = bookShop.userCart;
+
+    if (cartItems.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Cart is empty!")));
+      return;
+    }
+
+    for (var book in cartItems) {
+      final newOrder = Order(
+        bookId: book.id!,
+        bookTitle: book.title,
+        bookPrice: book.price,
+        orderDate: DateTime.now().toIso8601String(),
+      );
+
+      await DatabaseService.instance.insertOrder(newOrder);
+    }
+
+    bookShop.clearCart(); // Clear cart after purchase
+
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Purchase successful!")));
+
+    setState(() {});
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +91,7 @@ class _CartPageState extends State<CartPage> {
                   ),
                 ),
               ),
-              onPressed: () {},
+              onPressed: payNow, // Trigger payment function
             )
           ],
         ),
@@ -76,3 +100,11 @@ class _CartPageState extends State<CartPage> {
     );
   }
 }
+
+
+/*✅ This code will:
+
+1.Loop through cart items and insert each book into the orders table.
+2.Clear the cart after successful purchase.
+3.Show a confirmation message to the use
+*/

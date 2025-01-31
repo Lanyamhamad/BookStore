@@ -1,3 +1,4 @@
+import 'package:books/pages/order_history_page.dart';
 import 'package:flutter/material.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -57,6 +58,13 @@ class MyDrawer extends StatelessWidget {
           // Navigate to about us
         },
       ),
+      ListTile(
+        leading: const Icon(Icons.history),
+        title: const Text('Order History'),
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => OrderHistoryPage()));
+        },
+      )
     ],
   ),
 ),

@@ -73,4 +73,9 @@ class BookShop extends ChangeNotifier {
     _userCart.remove(book);
     notifyListeners();
   } 
+  // **Clear the cart after purchase**
+  void clearCart() {// clearCart() will empty the cart after purchase is completed.
+    _userCart.clear();
+    notifyListeners();
+  }  
 }
