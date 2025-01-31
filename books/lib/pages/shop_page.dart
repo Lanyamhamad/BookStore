@@ -5,6 +5,7 @@ import 'package:books/pages/order_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+
 class ShopPage extends StatefulWidget {
   const ShopPage({super.key});
 
@@ -13,6 +14,8 @@ class ShopPage extends StatefulWidget {
 }
 
 class _ShopPageState extends State<ShopPage> {
+  
+  
   // user selected a drink, go to order page
   void gotoOrderPage(Book book) {
     // navigate to order page
@@ -22,7 +25,8 @@ class _ShopPageState extends State<ShopPage> {
             builder: (context) => OrderPage(
                   book: book,
                   // onOrder: () => addToCart(book), // replace with addToCart method
-                )));
+                )
+                ));
   }
 
 
