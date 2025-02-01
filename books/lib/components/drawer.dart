@@ -1,4 +1,8 @@
+import 'package:books/pages/all_page.dart';
+import 'package:books/pages/cart_page.dart';
+import 'package:books/pages/home_page.dart';
 import 'package:books/pages/order_history_page.dart';
+import 'package:books/pages/shop_page.dart';
 import 'package:flutter/material.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -6,8 +10,7 @@ class MyDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: Drawer(
+    return Drawer(
   child: ListView(
     padding: EdgeInsets.zero,
     children: [
@@ -27,7 +30,8 @@ class MyDrawer extends StatelessWidget {
         leading: const Icon(Icons.home),
         title: const Text('Home'),
         onTap: () {
-          // Navigate to home
+          Navigator.push(context, MaterialPageRoute(builder: (context) => AllPage()));
+
         },
       ),
       ListTile(
@@ -39,23 +43,25 @@ class MyDrawer extends StatelessWidget {
       ),
       ListTile(
         leading: const Icon(Icons.video_library),
-        title: const Text('My Courses'),
+        title: const Text('Books List'),
         onTap: () {
-          // Navigate to my courses
+          Navigator.push(context, MaterialPageRoute(builder: (context) => ShopPage()));     
         },
       ),
       ListTile(
         leading: const Icon(Icons.search),
-        title: const Text('Search'),
+        title: const Text('cart list'),
         onTap: () {
-          // Navigate to search
+          Navigator.push(context, MaterialPageRoute(builder: (context) => CartPage()));
+
         },
       ),
       ListTile(
         leading: const Icon(Icons.info),
         title: const Text('About Us'),
         onTap: () {
-          // Navigate to about us
+          Navigator.push(context, MaterialPageRoute(builder: (context) => OrderHistoryPage()));
+
         },
       ),
       ListTile(
@@ -67,7 +73,6 @@ class MyDrawer extends StatelessWidget {
       )
     ],
   ),
-),
-    );
+);
   }
 }

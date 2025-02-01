@@ -1,6 +1,8 @@
+import 'package:books/components/drawer.dart';
 import 'package:books/models/book.dart';
 import 'package:books/models/category_model.dart';
 import 'package:books/models/courses_model.dart';
+import 'package:books/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -23,7 +25,8 @@ class AllPage extends StatelessWidget {
   Widget build(BuildContext context) {
     _getInitialInfo();
     return Scaffold(
-      appBar: appBar(),
+      appBar: appBar(context),
+      drawer: MyDrawer(),
       backgroundColor: Colors.white,
       body: ListView(
         children: [
@@ -309,52 +312,3 @@ class CategoryDetailPage extends StatelessWidget {
     );
   }
 }
-
-  AppBar appBar() {
-    return AppBar(
-      title: Text(
-        'Book Store',
-        style: TextStyle(
-          color: Colors.black,
-          fontSize: 18,
-          fontWeight: FontWeight.bold
-        ),
-      ),
-      backgroundColor: Colors.white,
-      elevation: 0.0,
-      centerTitle: true,
-      leading: GestureDetector(
-        child: Container(
-          margin: EdgeInsets.all(10),
-          alignment: Alignment.center,
-          child: Icon(
-            Icons.arrow_back,
-            size: 24.0,           
-            ),
-          decoration: BoxDecoration(
-            color: Color(0xffF7F8F8),
-            borderRadius: BorderRadius.circular(10) 
-          ),
-        ),
-      ),
-      actions: [
-        GestureDetector(
-          onTap: () {
-
-          },
-          child: Container(
-            margin: EdgeInsets.all(10),
-            alignment: Alignment.center,
-            width: 37,
-            child: IconButton(
-              icon: Icon(
-                Icons.menu,
-                size: 24.0,
-                ),
-              onPressed: () {},
-            ),
-          ),
-        ),
-      ],
-    );
-  }

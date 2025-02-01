@@ -1,10 +1,13 @@
 import 'package:books/models/book_shop.dart';
 import 'package:books/pages/home_page.dart';
+import 'package:books/services/database_service.dart';
 import 'package:books/viewmodels/book_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+    WidgetsFlutterBinding.ensureInitialized(); // Ensures the app is ready
+    await DatabaseService.instance.database; // Initializes SQLite
   runApp(
     MultiProvider(
       providers: [

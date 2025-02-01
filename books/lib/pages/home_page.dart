@@ -48,3 +48,59 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
+
+// this is method that returns an AppBar widget, and it 
+  AppBar appBar(BuildContext context) {
+    return AppBar(
+      title: Text(
+        'Book Store',
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 18,
+          fontWeight: FontWeight.bold
+        ),
+      ),
+      backgroundColor: Colors.white,
+      elevation: 0.0,
+      centerTitle: true,
+      leading: GestureDetector(
+        child: Container(
+          margin: EdgeInsets.all(10),
+          alignment: Alignment.center,
+          child: IconButton(
+            icon: Icon(
+              Icons.arrow_back,
+              size: 24.0,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },        
+            ),
+          decoration: BoxDecoration(
+            color: Color(0xffF7F8F8),
+            borderRadius: BorderRadius.circular(10) 
+          ),
+        ),
+      ),
+      // actions: [
+      //   GestureDetector(
+      //     onTap: () {
+      //       // Future actions (e.g., settings, notifications)
+      //     },
+          // child: Container(
+          //   margin: EdgeInsets.all(10),
+          //   alignment: Alignment.center,
+          //   width: 37,
+            // child: IconButton(
+            //   icon: Icon(
+            //     Icons.menu,
+            //     size: 24.0,
+            //     ),
+            //   onPressed: () {},
+            // ),
+      //     ),
+      //   ),
+      // ],
+    );
+  }
