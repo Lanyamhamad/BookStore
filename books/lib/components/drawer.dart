@@ -1,3 +1,4 @@
+import 'package:books/pages/aboutus_page.dart';
 import 'package:books/pages/all_page.dart';
 import 'package:books/pages/cart_page.dart';
 import 'package:books/pages/home_page.dart';
@@ -60,7 +61,7 @@ class MyDrawer extends StatelessWidget {
         leading: const Icon(Icons.info),
         title: const Text('About Us'),
         onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => OrderHistoryPage()));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => AboutUsPage()));
 
         },
       ),

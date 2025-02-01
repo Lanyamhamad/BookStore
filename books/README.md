@@ -9,18 +9,19 @@ The **Flutter Bookstore App** is a mobile application that allows users to brows
 ✅ Browse books with details like author, price, and cover images.  
 ✅ Add books to a shopping cart and manage the cart.  
 ✅ View book categories and recommendations.  
-✅ SQLite database for storing books and user authentication.  
+✅ firebase database for storing books. 
 ✅ State management using **Provider**.  
 ✅ Beautiful UI with a responsive design.  
-✅ Bottom navigation for easy access to pages.  
-✅ User authentication (Login & Signup) with SQLite.  
+✅ Bottom navigation for easy access to pages. 
+✅ Order history and purchase tracking. 
+ 
 
 ---
 
 ## **Tech Stack**
 - **Framework:** Flutter (Dart)  
 - **State Management:** Provider  
-- **Database:** SQLite (sqflite package)  
+- **Database:** firebase (firebase package)  
 - **UI Components:** Material Design, Google Nav Bar  
 
 ---
@@ -29,9 +30,10 @@ The **Flutter Bookstore App** is a mobile application that allows users to brows
 📂 lib/
 ├── 📂 components/        # UI Components (BookTile, BottomNav, Drawer, etc.)
 ├── 📂 models/            # Data Models (Book, User, CartItem, etc.)
-├── 📂 pages/             # Screens (Home, Shop, Cart, Orders, Login, Signup, etc.)
+├── 📂 pages/             # Screens (Home, Shop, Cart, Orders, etc.)
 ├── 📂 viewmodels/        # MVVM ViewModels (BookViewModel, CartViewModel)
-├── 📂 services/          # Database & Authentication Services (SQLite DB, Auth Service)
+├── 📂 services/          # Database 
+├── 📝 const.dart          # Backroundcolor 
 ├── 📝 main.dart          # Entry point of the application
 
 
@@ -52,28 +54,22 @@ flutter pub get
 flutter run
 ```
 
-SQLite Database Setup
+## **Frebase Firestore Setup**
 
-The app uses SQLite for storing books and user authentication data. The database tables include:
+The app uses Firestore to store books, users, and orders. The Firestore collections include:
 
-books (id, title, author, price, imagePath, pages, level, viewIsSelected)
+books (id, title, author, price, imagePath, etc.)
+
+orders* (id, bookId, bookTitle, bookPrice, orderDate)*
 
 users (id, username, password)
 
-Authentication System
 
-Users can register and log in using SQLite-based authentication. The authentication system:
 
-Stores user credentials securely in SQLite.
-
-Checks user login credentials before granting access.
-
-Screenshots
-
-(Add images here for UI previews)
-<img src="assets/BuberBreakfastUiUx.png" alt="drawing" width="1000"/>
 
 Future Improvements
 
 🔹 Implement Firebase authentication for better security.
-🔹 Add a search bar for books and categories.🔹 Integrate an online payment system.🔹 Improve UI with animations and better design.
+🔹 Add a search bar for books and categories.
+🔹 Integrate an online payment system.
+🔹 Improve UI with animations and better design.
