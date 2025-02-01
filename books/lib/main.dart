@@ -4,10 +4,11 @@ import 'package:books/services/database_service.dart';
 import 'package:books/viewmodels/book_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
-    WidgetsFlutterBinding.ensureInitialized(); // Ensures the app is ready
-    await DatabaseService.instance.database; // Initializes SQLite
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(
     MultiProvider(
       providers: [

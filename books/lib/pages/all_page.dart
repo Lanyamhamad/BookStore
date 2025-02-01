@@ -1,7 +1,7 @@
 import 'package:books/components/drawer.dart';
 import 'package:books/models/book.dart';
 import 'package:books/models/category_model.dart';
-import 'package:books/models/courses_model.dart';
+import 'package:books/models/podcasts_model.dart';
 import 'package:books/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -13,12 +13,12 @@ class AllPage extends StatelessWidget {
 
   List<CategoryModel> categories = [];
   List<Book> books = [];
-  List<CourseModel> courses = [];
+  List<podcastModel> podcasts = [];
 
   void _getInitialInfo(){ 
     categories = CategoryModel.getCategories();
     books = Book.getBooks();
-    courses = CourseModel.getCourses();
+    podcasts = podcastModel.getpodcasts();
   }
 
   @override
@@ -33,7 +33,7 @@ class AllPage extends StatelessWidget {
           _categoriesSection(context),
           const SizedBox(height: 40,),
           
-          _coursesSection(),
+          _podcastsSection(),
           const SizedBox(height: 40,),
           
           _bookSection(),
@@ -44,14 +44,14 @@ class AllPage extends StatelessWidget {
     );
   }
 
-  Column _coursesSection() {
+  Column _podcastsSection() {
     return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Padding(
               padding: EdgeInsets.only(left: 20),
             child: Text(
-              'Popular Courses', 
+              'Popular podcasts', 
               style: TextStyle(
                 color: Colors.black, 
                 fontSize: 18,
@@ -67,7 +67,7 @@ class AllPage extends StatelessWidget {
               return Container(
                 width: 210,
                 decoration: BoxDecoration(
-                  color: courses[index].boxIsSelected
+                  color: podcasts[index].boxIsSelected
                       ? const Color(0xff9DCEFF)
                       : Colors.white,
                   borderRadius: BorderRadius.circular(20),
@@ -76,14 +76,14 @@ class AllPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Image.asset(
-                      courses[index].imagePath,
+                      podcasts[index].imagePath,
                       width: 100,
                       height: 100,
                     ),
                     Column(
                       children: [
                         Text(
-                          courses[index].title,
+                          podcasts[index].title,
                           style: const TextStyle(
                             fontWeight: FontWeight.w500,
                             color: Colors.black,
@@ -91,7 +91,7 @@ class AllPage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          '${courses[index].level} | ${courses[index].duration} | ${courses[index].lessons}',
+                          '${podcasts[index].level} | ${podcasts[index].duration} | ${podcasts[index].lessons}',
                           style: const TextStyle(
                             color: Color(0xff786F72),
                             fontSize: 13,
@@ -105,7 +105,7 @@ class AllPage extends StatelessWidget {
               );
             },
             separatorBuilder: (context, index) => const SizedBox(width: 25),
-            itemCount: courses.length,
+            itemCount: podcasts.length,
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.only(left: 20, right: 20),
           ),
@@ -285,10 +285,11 @@ class AllPage extends StatelessWidget {
   }
 }
 
+// category page
 class CategoryDetailPage extends StatelessWidget {
   final CategoryModel category;
   
-  CategoryDetailPage({required this.category});
+  const CategoryDetailPage({required this.category});
 
   @override
   Widget build(BuildContext context) {
@@ -299,14 +300,14 @@ class CategoryDetailPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: Text(
-              'Books & Courses in ${category.name}',
+              'Books & podcasts in ${category.name}',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
           ListTile(title: Text('Books')),
           // Fetch and display books related to the selected category
-          ListTile(title: Text('Courses')),
-          // Fetch and display courses related to the selected category
+          ListTile(title: Text('podcasts')),
+          // Fetch and display podcasts related to the selected category
         ],
       ),
     );

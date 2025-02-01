@@ -7,22 +7,22 @@ class BookViewModel extends ChangeNotifier {
   List<Book> get books => _books;
 
   Future<void> loadBooks() async {
-    _books = await DatabaseService.instance.fetchBooks();
+    _books = await FirebaseService.fetchBooks();
     notifyListeners();
   }
 
   Future<void> addBook(Book book) async {
-    await DatabaseService.instance.insertBook(book);
+    await FirebaseService.addBook(book);
     await loadBooks();
   }
 
-  Future<void> deleteBook(int id) async {
-    await DatabaseService.instance.deleteBook(id);
+  Future<void> deleteBook(String bookId) async {
+    await FirebaseService.deleteBook(bookId);
     await loadBooks();
   }
 
-  Future<void> updateBook(Book book) async {
-    await DatabaseService.instance.updateBook(book);
-    await loadBooks();
-  }
+  // Future<void> updateBook(Book book) async {
+  //   await FirebaseService.updateBook(book);
+  //   await loadBooks();
+  // }
 }

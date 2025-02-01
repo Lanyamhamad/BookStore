@@ -1,6 +1,7 @@
 import 'package:books/models/order_model.dart';
 import 'package:flutter/material.dart';
 import '../services/database_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class OrderHistoryPage extends StatefulWidget {
   @override
@@ -8,7 +9,7 @@ class OrderHistoryPage extends StatefulWidget {
 }
 
 class _OrderHistoryPageState extends State<OrderHistoryPage> {
-  List<Order> _orders = [];
+  List<OrderBook> _orders = [];
 
   @override
   void initState() {
@@ -17,7 +18,7 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
   }
 
   void _loadOrders() async {
-    _orders = await DatabaseService.instance.fetchOrders();
+    _orders = await FirebaseService.fetchOrders();
     setState(() {});
   }
 
@@ -34,7 +35,7 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
                 return ListTile(
                   title: Text(order.bookTitle),
                   subtitle: Text("Price: \$${order.bookPrice}"),
-                  trailing: Text(order.orderDate.split("T")[0]), // Show only date
+                  trailing: Text(order.orderDate.split("T")[0]),
                 );
               },
             ),

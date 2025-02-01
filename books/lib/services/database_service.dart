@@ -1,81 +1,34 @@
 import 'package:books/models/order_model.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
+// import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/book.dart';
 
-class DatabaseService {
-  static final DatabaseService instance = DatabaseService._init();
-  static Database? _database;
+class FirebaseService {
+  static final FirebaseFirestore _db = FirebaseFirestore.instance;
 
-  DatabaseService._init();
-
-  Future<Database> get database async {
-    if (_database != null) return _database!;
-    _database = await _initDB('bookshop.db');
-    return _database!;
+  // Book Operations
+  static Future<void> addBook(Book book) async {
+    await _db.collection('books').add(book.toMap());
   }
 
-  Future<Database> _initDB(String filePath) async {
-    final dbPath = await getDatabasesPath();
-    final path = join(dbPath, filePath);
-    return await openDatabase(path, version: 1, onCreate: _createDB);
+  static Future<List<Book>> fetchBooks() async {
+    QuerySnapshot snapshot = await _db.collection('books').get();
+    return snapshot.docs.map((doc) => Book.fromMap(doc.data() as Map<String, dynamic>)).toList();
   }
 
-  Future<void> _createDB(Database db, int version) async {
-    await db.execute('''
-      CREATE TABLE books (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        title TEXT,
-        author TEXT,
-        imagePath TEXT,
-        price REAL,
-        pages TEXT,
-        level TEXT,
-        viewIsSelected INTEGER
-      )
-    ''');
-    // create order table
-    await db.execute('''     
-    CREATE TABLE orders (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      bookId INTEGER,
-      bookTitle TEXT,
-      bookPrice REAL,
-      orderDate TEXT,
-      FOREIGN KEY (bookId) REFERENCES books (id)
-    )
-  ''');
-  }
-  // these are for books 
-  Future<void> insertBook(Book book) async {
-    final db = await instance.database;
-    await db.insert('books', book.toMap(), conflictAlgorithm: ConflictAlgorithm.replace);
+  static Future<void> deleteBook(String bookId) async {
+    await _db.collection('books').doc(bookId).delete();
   }
 
-  Future<List<Book>> fetchBooks() async {
-    final db = await instance.database;
-    final books = await db.query('books');
-    return books.map((json) => Book.fromMap(json)).toList();
+  // Order Operations
+  static Future<void> insertOrder(OrderBook order) async {
+    await _db.collection('orders').add(order.toMap());
   }
 
-  Future<void> deleteBook(int id) async {
-    final db = await instance.database;
-    await db.delete('books', where: 'id = ?', whereArgs: [id]);
+  static Future<List<OrderBook>> fetchOrders() async {
+    QuerySnapshot snapshot = await _db.collection('orders').get();
+    return snapshot.docs.map((doc) => OrderBook.fromMap(doc.data() as Map<String, dynamic>)).toList();
   }
 
-  Future<void> updateBook(Book book) async {
-    final db = await instance.database;
-    await db.update('books', book.toMap(), where: 'id = ?', whereArgs: [book.id]);
-  }
-  Future<void> insertOrder(Order order) async {
-  final db = await instance.database;
-  await db.insert('orders', order.toMap(), conflictAlgorithm: ConflictAlgorithm.replace);
-}
-
-Future<List<Order>> fetchOrders() async {
-  final db = await instance.database;
-  final orders = await db.query('orders');
-  return orders.map((json) => Order.fromMap(json)).toList();
-}
-
+  
 }

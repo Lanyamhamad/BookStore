@@ -22,31 +22,29 @@ class _CartPageState extends State<CartPage> {
 
   // pay button tapped
    void payNow() async {
-    final bookShop = Provider.of<BookShop>(context, listen: false);
-    final cartItems = bookShop.userCart;
+  final bookShop = Provider.of<BookShop>(context, listen: false);
+  final cartItems = bookShop.userCart;
 
-    if (cartItems.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Cart is empty!")));
-      return;
-    }
-
-    for (var book in cartItems) {
-      final newOrder = Order(
-        bookId: book.id!,
-        bookTitle: book.title,
-        bookPrice: book.price,
-        orderDate: DateTime.now().toIso8601String(),
-      );
-
-      await DatabaseService.instance.insertOrder(newOrder);
-    }
-
-    bookShop.clearCart(); // Clear cart after purchase
-
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Purchase successful!")));
-
-    setState(() {});
+  if (cartItems.isEmpty) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Cart is empty!")));
+    return;
   }
+
+  for (var book in cartItems) {
+    final newOrder = OrderBook(
+      bookId: book.id!,
+      bookTitle: book.title,
+      bookPrice: book.price,
+      orderDate: DateTime.now().toIso8601String(),
+    );
+
+    await FirebaseService.insertOrder(newOrder);
+  }
+
+  bookShop.clearCart();
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Purchase successful!")));
+  setState(() {});
+}
 
 
   @override

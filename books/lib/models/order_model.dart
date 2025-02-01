@@ -1,11 +1,11 @@
-class Order {
+class OrderBook {
   final int? id;
   final int bookId;
   final String bookTitle;
   final double bookPrice;
   final String orderDate;
 
-  Order({this.id, required this.bookId, required this.bookTitle, required this.bookPrice, required this.orderDate});
+  OrderBook({this.id, required this.bookId, required this.bookTitle, required this.bookPrice, required this.orderDate});
 
   Map<String, dynamic> toMap() {
     return {
@@ -17,8 +17,8 @@ class Order {
     };
   }
 
-  factory Order.fromMap(Map<String, dynamic> map) {
-    return Order(
+  factory OrderBook.fromMap(Map<String, dynamic> map) {
+    return OrderBook(
       id: map['id'],
       bookId: map['bookId'],
       bookTitle: map['bookTitle'],

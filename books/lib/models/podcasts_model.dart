@@ -1,4 +1,4 @@
-class CourseModel {
+class podcastModel {
   final String title;
   final String instructor;
   final String imagePath;
@@ -7,7 +7,7 @@ class CourseModel {
   final String lessons;
   final bool boxIsSelected;
 
-  CourseModel({
+  podcastModel({
     required this.title,
     required this.instructor,
     required this.imagePath,
@@ -18,13 +18,13 @@ class CourseModel {
 
   });
 
-static List<CourseModel> getCourses() {
-    List<CourseModel> courses = [];
+static List<podcastModel> getpodcasts() {
+    List<podcastModel> podcasts = [];
 
-    courses.add(
-      CourseModel(
+    podcasts.add(
+      podcastModel(
         title: 'HTML Basics',
-        imagePath: 'assets/images/html_course.png',
+        imagePath: 'assets/images/html_podcast.png',
         level: 'Beginner',
         instructor: 'alexander',
         duration: '2 hours',
@@ -33,10 +33,10 @@ static List<CourseModel> getCourses() {
       ),
     );
 
-    courses.add(
-      CourseModel(
+    podcasts.add(
+      podcastModel(
         title: 'CSS Styling',
-        imagePath: 'assets/images/css_course.png',
+        imagePath: 'assets/images/css_podcast.png',
         level: 'Intermediate',
         instructor: 'tim',
         duration: '3 hours',
@@ -45,10 +45,10 @@ static List<CourseModel> getCourses() {
       ),
     );
 
-    courses.add(
-      CourseModel(
+    podcasts.add(
+      podcastModel(
         title: 'JavaScript Fundamentals',
-        imagePath: 'assets/images/js_course.png',
+        imagePath: 'assets/images/js_podcast.png',
         level: 'Beginner',
         instructor: 'emily',
         duration: '4 hours',
@@ -57,6 +57,6 @@ static List<CourseModel> getCourses() {
       ),
     );
 
-    return courses;
+    return podcasts;
   }
 }
