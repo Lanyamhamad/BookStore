@@ -4,6 +4,14 @@
 The **Flutter Bookstore App** is a mobile application that allows users to browse books, add them to their cart, and purchase them. The app is built using **Flutter** and follows the **MVVM (Model-View-ViewModel) architecture** for maintainability and scalability. It also integrates **SQLite for persistent storage** and includes **user authentication** with login and signup functionalities.
 
 ---
+## **Our Team**
+ **Lanya Mohammed**
+ **Sozyar Mohammed** 
+ **Eman Abdulsamad** 
+ **SQLite for persistent storage** 
+  **user authentication** with login and signup functionalities.
+
+---
 
 ## **Features**
 ✅ Browse books with details like author, price, and cover images.  
@@ -37,22 +45,6 @@ The **Flutter Bookstore App** is a mobile application that allows users to brows
 ├── 📝 main.dart          # Entry point of the application
 
 
----
-
-## **Installation & Setup**
-```sh
-# Clone the repository
-git clone https://github.com/your-repo/flutter-bookstore-app.git
-
-# Navigate to the project directory
-cd flutter-bookstore-app
-
-# Install dependencies
-flutter pub get
-
-# Run the app
-flutter run
-```
 
 ## **Frebase Firestore Setup**
 
