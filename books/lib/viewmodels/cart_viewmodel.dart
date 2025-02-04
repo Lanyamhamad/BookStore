@@ -1,4 +1,4 @@
-import 'package:books/models/order_model.dart';
+import 'package:books/models/navigator/order_model.dart';
 import 'package:books/services/database_service.dart';
 import 'package:flutter/material.dart';
 import '../models/cart_item.dart';

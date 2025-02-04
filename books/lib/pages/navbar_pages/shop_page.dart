@@ -1,7 +1,7 @@
 import 'package:books/components/book_tile.dart';
 import 'package:books/models/book.dart';
 import 'package:books/models/book_shop.dart';
-import 'package:books/pages/order_page.dart';
+import 'package:books/pages/details/order_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -61,7 +61,9 @@ class _ShopPageState extends State<ShopPage> {
                                 onTap: () => gotoOrderPage(eachBook),
                                 trailing: Icon(Icons.arrow_forward),
                               );
-                            }))
+                            }
+                            )
+                            )
                   ],
                 ),
               ),

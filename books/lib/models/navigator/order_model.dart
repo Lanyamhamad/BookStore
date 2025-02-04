@@ -1,3 +1,5 @@
+import 'package:books/models/book.dart';
+
 class OrderBook {
   final int? id;
   final int bookId;
@@ -5,7 +7,7 @@ class OrderBook {
   final double bookPrice;
   final String orderDate;
 
-  OrderBook({this.id, required this.bookId, required this.bookTitle, required this.bookPrice, required this.orderDate});
+  OrderBook({this.id, required this.bookId, required this.bookTitle, required this.bookPrice, required this.orderDate, required Book book});
 
   Map<String, dynamic> toMap() {
     return {

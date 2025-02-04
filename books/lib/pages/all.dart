@@ -1,9 +1,9 @@
 import 'package:books/components/bottom_nav_bar.dart';
 import 'package:books/components/drawer.dart';
 import 'package:books/const.dart';
-import 'package:books/pages/all_page.dart';
-import 'package:books/pages/cart_page.dart';
-import 'package:books/pages/shop_page.dart';
+import 'package:books/pages/navbar_pages/home_page.dart';
+import 'package:books/pages/navbar_pages/cart_page.dart';
+import 'package:books/pages/navbar_pages/shop_page.dart';
 import 'package:flutter/material.dart';
 
 

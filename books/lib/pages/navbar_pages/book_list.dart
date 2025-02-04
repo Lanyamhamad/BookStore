@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../viewmodels/book_viewmodel.dart';
+import '../../viewmodels/book_viewmodel.dart';
 
 class BookListPage extends StatelessWidget {
   @override

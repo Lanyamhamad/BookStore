@@ -18,7 +18,7 @@ class BookShop extends ChangeNotifier {
     ),
     
     Book(
-      id: 1,
+      id: 2,
       title: 'JavaScript: The Definitive Guide',
       author: 'David Flanagan',
       price: 49.99,
@@ -30,7 +30,7 @@ class BookShop extends ChangeNotifier {
     ),
     
     Book(
-      id: 1,
+      id: 3,
       title: 'Flutter: The Complete Guide',
       author: 'Sarah Dawson',
       price: 49.99,
@@ -41,7 +41,7 @@ class BookShop extends ChangeNotifier {
       level: 'advanced',
     ),
     Book(
-      id: 1,
+      id: 4,
       title: 'Flutter: The Complete Guide',
       author: 'Sarah Dawson',
       price: 49.99,
@@ -51,8 +51,45 @@ class BookShop extends ChangeNotifier {
       boxColor: const Color.fromARGB(255, 121, 212, 177),
       level: 'advanced',
     ),
+    Book(
+      id: "5",
+      title: "Mastering Dart",
+      author: "Jane Smith",
+      price: 24.99,
+      imagePath: "assets/images/dart_book.png",
+      pages: "320",
+      level: "Intermediate",
+      genre: "Programming",
+      description: "A deep dive into Dart programming language with real-world examples."
+
+    ),
+    Book(
+      id: "1",
+      title: "The Flutter Journey",
+      author: "John Doe",
+      price: 19.99,
+      imagePath: "assets/images/flutter_book.png",
+      pages: "250",
+      level: "Beginner",
+      genre: "Technology",
+      description: "A complete guide to mastering Flutter for mobile development."
+
+    )
     
   ];
+
+
+
+
+
+
+
+
+
+
+
+
+
   // user cart
   List<Book> _userCart = [];      //This list is intended to store instances of the Book class
 

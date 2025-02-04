@@ -1,8 +1,11 @@
 import 'package:books/components/drawer.dart';
 import 'package:books/models/book.dart';
-import 'package:books/models/category_model.dart';
-import 'package:books/models/podcasts_model.dart';
-import 'package:books/pages/home_page.dart';
+import 'package:books/models/navigator/category_model.dart';
+import 'package:books/models/navigator/podcasts_model.dart';
+import 'package:books/pages/navbar_pages/book_list.dart';
+import 'package:books/pages/details/categorydetail_page.dart';
+import 'package:books/pages/all.dart';
+import 'package:books/pages/details/podcastdetail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -13,12 +16,12 @@ class AllPage extends StatelessWidget {
 
   List<CategoryModel> categories = [];
   List<Book> books = [];
-  List<podcastModel> podcasts = [];
+  List<PodcastModel> podcasts = [];
 
   void _getInitialInfo(){ 
     categories = CategoryModel.getCategories();
     books = Book.getBooks();
-    podcasts = podcastModel.getpodcasts();
+    podcasts = PodcastModel.getpodcasts();
   }
 
   @override
@@ -26,7 +29,7 @@ class AllPage extends StatelessWidget {
     _getInitialInfo();
     return Scaffold(
       appBar: appBar(context),
-      drawer: MyDrawer(),
+      endDrawer: MyDrawer(),
       backgroundColor: Colors.white,
       body: ListView(
         children: [
@@ -67,9 +70,7 @@ class AllPage extends StatelessWidget {
               return Container(
                 width: 210,
                 decoration: BoxDecoration(
-                  color: podcasts[index].boxIsSelected
-                      ? const Color(0xff9DCEFF)
-                      : Colors.white,
+                  color: podcasts[index].boxColor,
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Column(
@@ -91,7 +92,7 @@ class AllPage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          '${podcasts[index].level} | ${podcasts[index].duration} | ${podcasts[index].lessons}',
+                          '${podcasts[index].instructor} | ${podcasts[index].level} | ${podcasts[index].lessons}',
                           style: const TextStyle(
                             color: Color(0xff786F72),
                             fontSize: 13,
@@ -100,6 +101,33 @@ class AllPage extends StatelessWidget {
                         ),
                       ],
                     ),
+                    ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      // backgroundColor: podcasts[index].boxIsSelected ? Color(0xff9DCEFF) : Colors.transparent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    ),
+                    onPressed: () {
+                        Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => PodcastDetailPage(podcasts: podcasts[index]),
+                        ),
+                      );
+
+                    },
+                    child: Text(
+                      'View',
+                      style: TextStyle(
+                        color: podcasts[index].boxIsSelected ? Colors.white : Color(0xffc58BF2),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14,
+                      ),
+                    ),
+                  )
+
                   ],
                 ),
               );
@@ -113,6 +141,9 @@ class AllPage extends StatelessWidget {
       ],
     );
   }
+
+
+  
 
   Column _bookSection() {
     return Column(
@@ -170,6 +201,31 @@ class AllPage extends StatelessWidget {
                                       fontWeight: FontWeight.w400
                                       ),
                                   ),
+                                  ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(50),
+                                      ),
+                                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                                    ),
+                                    onPressed: () {
+                                        Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => OrderBook(book: books[index]), // Assuming OrderBook takes a Book object
+                                        ),
+                                      );
+
+                                    },
+                                    child: Text(
+                                      'View',
+                                      style: TextStyle(
+                                        color: podcasts[index].boxIsSelected ? Colors.white : Color(0xffc58BF2),
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ),
                                 ],
                               ),
                               Container(
@@ -186,15 +242,13 @@ class AllPage extends StatelessWidget {
                                   ),
                                 ),
 
-                                //YOU CAN REMOVE THIS 
+                                
                                 decoration: BoxDecoration(
                                   
                                   gradient: LinearGradient(
                                     colors: [
                                       books[index].viewIsSelected ? Color(0xff9DCEFF) : Colors.transparent,
-                                      books[index].viewIsSelected ? Color(0xff92A3FD) : Colors.transparent,
-                                    
-                              
+                                      books[index].viewIsSelected ? Color(0xff92A3FD) : Colors.transparent,                                 
                             ]
                             ),
                             borderRadius:BorderRadius.circular(50) 
@@ -285,31 +339,3 @@ class AllPage extends StatelessWidget {
   }
 }
 
-// category page
-class CategoryDetailPage extends StatelessWidget {
-  final CategoryModel category;
-  
-  const CategoryDetailPage({required this.category});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(category.name)),
-      body: ListView(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Text(
-              'Books & podcasts in ${category.name}',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-          ),
-          ListTile(title: Text('Books')),
-          // Fetch and display books related to the selected category
-          ListTile(title: Text('podcasts')),
-          // Fetch and display podcasts related to the selected category
-        ],
-      ),
-    );
-  }
-}

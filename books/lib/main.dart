@@ -1,6 +1,6 @@
 import 'package:books/config/firebase_config.dart';
 import 'package:books/models/book_shop.dart';
-import 'package:books/pages/home_page.dart';
+import 'package:books/pages/all.dart';
 import 'package:books/services/database_service.dart';
 import 'package:books/viewmodels/book_viewmodel.dart';
 import 'package:flutter/material.dart';

@@ -1,7 +1,7 @@
 import 'package:books/components/book_tile.dart';
 import 'package:books/models/book.dart';
 import 'package:books/models/book_shop.dart';
-import 'package:books/models/order_model.dart';
+import 'package:books/models/navigator/order_model.dart';
 import 'package:books/services/database_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -35,7 +35,7 @@ class _CartPageState extends State<CartPage> {
       bookId: book.id!,
       bookTitle: book.title,
       bookPrice: book.price,
-      orderDate: DateTime.now().toIso8601String(),
+      orderDate: DateTime.now().toIso8601String(), 
     );
 
     await FirebaseService.insertOrder(newOrder);

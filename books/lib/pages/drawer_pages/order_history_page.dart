@@ -1,6 +1,6 @@
-import 'package:books/models/order_model.dart';
+import 'package:books/models/navigator/order_model.dart';
 import 'package:flutter/material.dart';
-import '../services/database_service.dart';
+import '../../services/database_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class OrderHistoryPage extends StatefulWidget {

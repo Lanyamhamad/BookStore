@@ -1,4 +1,4 @@
-import 'package:books/models/order_model.dart';
+import 'package:books/models/navigator/order_model.dart';
 // import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/book.dart';
